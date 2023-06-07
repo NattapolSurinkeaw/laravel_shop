@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/products',[BackendController::class,'getProduct']);
 Route::get('/product/{id}',[BackendController::class,'getProductById']);
 Route::post('/createproduct',[BackendController::class,'createproducts']);
 Route::put('/editproduct/{id}',[BackendController::class,'editProduct']);
+Route::delete('/delete/{id}',[BackendController::class,'deleteProduct']);
+Route::get('/carts',[CartController::class,"getProductCart"]);
+Route::post('/cart/{id}',[CartController::class,"addToCart"]);

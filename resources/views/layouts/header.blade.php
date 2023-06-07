@@ -15,8 +15,17 @@
         <li>
           <a href="/" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
         </li>
-        <li>
-          <a href="/" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500">Home</a>
+        <li class="flex gap-1 align-center">
+          <span>
+            <a href="/cart" class="block pr-4 text-white rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="file: h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+              </svg>
+            </a>
+          </span>
+          <span>
+            <p id="productCount" class="bg-red-500 p-1 rounded-xl w-4 h-8">0</p>
+          </span>
         </li>
       </ul>
     </div>
@@ -24,3 +33,14 @@
 </nav>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  axios.get(`/api/carts`).then(function(response){
+    let products = response.data.message.length
+    console.log(products);
+    console.log(response.data.message.length);
+    document.getElementById('productCount').textContent = products;
+  }).catch(function(error) {
+    console.log(error);
+  });
+</script>

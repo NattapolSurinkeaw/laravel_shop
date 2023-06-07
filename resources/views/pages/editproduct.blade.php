@@ -17,17 +17,17 @@
   <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
   <input type="tel" value="{{$product->quantity}}" id="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
 </div>
-<button onclick="editproduct()" class="m-8 bg-green-500 p-5 rounded-xl">บันทึก</button>
+<button onclick="editproduct({{$product->id}})" class="m-8 bg-green-500 p-5 rounded-xl">บันทึก</button>
 @endsection
 
 <script>
-  function editproduct() {
+  function editproduct(productID) {
     let nameproduct = document.getElementById("nameproduct").value
     let description = document.getElementById("description").value
     let price = document.getElementById("price").value
     let quantity = document.getElementById("quantity").value
     
-    if(!nameproduct || !description || !price || !quantity){
+    if(!nameproduct || !description || !price || !quantity || isNaN(price) || isNaN(quantity)){
         Swal.fire(
         'Please fill in all fields',
         'Your product name, description, price, and quantity are required',
@@ -41,7 +41,7 @@
         quantity: quantity
       };
       
-      axios.put('/api/editproduct/{{$product->id}}', productData)
+      axios.put(`/api/editproduct/${productID}`, productData)
         .then(function (response){
           console.log(response.data);
           window.location.href = "/";

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
 
 class ProductController extends Controller
 {
@@ -29,4 +30,13 @@ class ProductController extends Controller
             "product" => $product
         ]);
     }
+
+    public function cartProduct(){
+        $cartproduct = Cart::all();
+        return view("pages.cartproduct",[
+            "carts" => $cartproduct
+        ]);
+    }
+
+
 }

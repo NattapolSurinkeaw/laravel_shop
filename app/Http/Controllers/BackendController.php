@@ -101,4 +101,24 @@ class BackendController extends Controller
         ], 200);
     }
 
+
+    public function deleteProduct($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                "Status" => 404,
+                "message" => "product not found."
+            ], 404);
+        }
+
+        $product->delete();
+
+        return response()->json([
+            "status" => 200,
+            "message" => "product deleted successfully."
+        ], 200);
+    }
+
 }

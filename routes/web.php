@@ -19,3 +19,5 @@ Route::get('/', [ProductController::class,"getProducts"]);
 Route::get('/createproduct', [ProductController::class,'createform']);
 
 Route::get('/editproduct/{id}', [ProductController::class,'editform']);
+
+Route::get('/cart',[ProductController::class,"cartProduct"]);
