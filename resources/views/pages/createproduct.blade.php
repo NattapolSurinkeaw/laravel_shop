@@ -48,15 +48,19 @@
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'response.data',
+            title: 'Your work has been saved',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
           })
-          // console.log(response.data);
-          window.location.href = "/";
+            
         }).catch(function (error) {
           console.log(error);
         });
+        
     }
+    setInterval(function() {
+      window.location.href = "/";
+    }, 1000);
+    
   }
 </script>

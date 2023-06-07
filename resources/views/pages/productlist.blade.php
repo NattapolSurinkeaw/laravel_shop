@@ -73,7 +73,6 @@
             .delete(`api/delete/${productID}`)
             .then(function (response) {
                 console.log(response.data);
-                window.location.href = "/";
             })
             .catch(function (error) {
                 console.error(error);
@@ -83,6 +82,10 @@
           'Your file has been deleted.',
           'success'
         )
+        setInterval(function() {
+          window.location.href = "/";
+        }, 1000);
+        
       }
 })
       

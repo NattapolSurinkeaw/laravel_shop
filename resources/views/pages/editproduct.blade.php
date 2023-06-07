@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <div>
+ 
   <h1 class="m-10 text-center text-3xl text-yellow-700 font-medium">Edit Product</h1>
   <label for="nameproduct" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
   <input type="text" value="{{$product->nameproduct}}" id="nameproduct" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
@@ -44,10 +45,19 @@
       axios.put(`/api/editproduct/${productID}`, productData)
         .then(function (response){
           console.log(response.data);
-          window.location.href = "/";
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }).catch(function (error) {
           console.log(error);
         });
+        setInterval(function() {
+        window.location.href = "/";
+        }, 1000);
     }
   }
 </script>

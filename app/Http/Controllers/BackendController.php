@@ -73,7 +73,7 @@ class BackendController extends Controller
             return response()->json([
                 "status" => 200,
                 "message" => "Product created successfully"
-            ]);
+            ],200);
         }
 
         return response()->json([
